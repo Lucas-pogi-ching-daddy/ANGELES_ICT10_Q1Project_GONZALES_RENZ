@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA SKU Generator</title>
+
+    <!-- PyScript -->
+    <link rel="stylesheet"
+          href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module"
+            src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9eef5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #17408B;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #17408B;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #C9082A;
+        }
+
+        .output-box {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        a {
+            color: #17408B;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loads the Python file -->
+    <script type="py"
+            src="main.py"
+            config='{"interpreter": "pyodide"}'></script>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header">
+                NBA Ticket SKU Generator
+            </div>
+
+            <div class="form-group">
+                <label>Team</label>
+
+                <select id="sku_team">
+                    <option value="LAL">Los Angeles Lakers</option>
+                    <option value="GSW">Golden State Warriors</option>
+                    <option value="BOS">Boston Celtics</option>
+                    <option value="NYK">New York Knicks</option>
+                    <option value="CHI">Chicago Bulls</option>
+                    <option value="MIA">Miami Heat</option>
+                    <option value="DEN">Denver Nuggets</option>
+                    <option value="MIL">Milwaukee Bucks</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Ticket Type</label>
+
+                <select id="sku_type">
+                    <option value="REG">Regular Season</option>
+                    <option value="PLY">Playoffs</option>
+                    <option value="PRE">Preseason</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Ticket Quantity</label>
+
+                <input type="number"
+                       id="sku_qty"
+                       min="1"
+                       placeholder="e.g. 3">
+            </div>
+
+            <button py-click="generate_sku">
+                Generate SKU
+            </button>
+
+            <div id="sku_output" class="output-box"></div>
+        </div>
+
+        <div class="card">
+            <a href="index.html">Back to Receipt Generator</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
